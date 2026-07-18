@@ -19,11 +19,11 @@ val Baloo2 = FontFamily(
 val Typography = Typography(
 
     // Display
-   displayLarge = TextStyle(
-       fontFamily = Baloo2,
-       fontWeight = FontWeight.Bold,
-       fontSize = 56.sp
-   ),
+    displayLarge = TextStyle(
+        fontFamily = Baloo2,
+        fontWeight = FontWeight.Bold,
+        fontSize = 56.sp
+    ),
 
     // Headlines
     headlineLarge = TextStyle(
