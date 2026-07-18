@@ -1,0 +1,19 @@
+# Arquivos de projeto do Android Studio
+.idea/
+*.iml
+/.gradle/
+build/
+captures/
+local.properties
+
+# Sistema operacional
+.DS_Store
+
+# Pastas de builds nativas
+.externalNativeBuild/
+.cxx/
+
+# Saídas do Gradle
+out/
+
+# Outros arquivos temporários ou de cache
