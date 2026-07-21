@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import com.example.fourkalculator.ui.components.CalculatorDisplay
+import com.example.fourkalculator.ui.components.CalculatorKeyboard
 import com.example.fourkalculator.ui.components.ScreenContainer
 import com.example.fourkalculator.ui.components.TopNavigationBar
 import com.example.fourkalculator.ui.theme.FourKalculatorTheme
@@ -27,6 +28,7 @@ fun MainScreen() {
     ScreenContainer {
         TopNavigationBar()
         CalculatorDisplay(expression = "4+4", result = "8")
+        CalculatorKeyboard()
     }
 }
 

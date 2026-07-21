@@ -1,5 +1,6 @@
 package com.example.fourkalculator.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.fourkalculator.ui.theme.Primary
 import com.example.fourkalculator.ui.theme.Secondary
@@ -23,7 +25,7 @@ fun CalculatorDisplay(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .height(200.dp),
+            .height(280.dp),
         horizontalAlignment = Alignment.End,
         verticalArrangement = Arrangement.Bottom
     ) {
@@ -36,7 +38,8 @@ fun CalculatorDisplay(
         Row(
             Modifier
                 .fillMaxWidth()
-                .height(112.dp),
+                .height(150.dp),
+
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {

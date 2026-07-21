@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
@@ -20,6 +21,7 @@ fun ScreenContainer(
             .fillMaxSize()
             .background(MainBackground)
             .statusBarsPadding()
+            .navigationBarsPadding()
             .padding(20.dp),
         content = content
     )
