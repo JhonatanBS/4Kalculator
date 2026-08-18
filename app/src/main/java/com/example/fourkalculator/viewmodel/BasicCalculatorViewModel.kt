@@ -25,7 +25,7 @@ class BasicCalculatorViewModel : ViewModel() {
     }
 
     private fun fullResult(value: String) {
-        TODO("Not yet implemented")
+        //_result.value = value.
     }
 
     private fun clearLastInput() {
@@ -47,7 +47,11 @@ class BasicCalculatorViewModel : ViewModel() {
             }
 
             ButtonType.OPERATOR -> {
-                if (!IsValidInputDisplay().isLastCharacterOperator(currentExpression)) {
+                val isLastOperator = IsValidInputDisplay.isLastCharacterOperator(currentExpression)
+                val isInvalidFirstOperator =
+                    currentExpression.isEmpty() && (value == "/" || value == "*")
+
+                if (!isLastOperator && !isInvalidFirstOperator) {
                     _expression.value = currentExpression + value
                 }
             }
