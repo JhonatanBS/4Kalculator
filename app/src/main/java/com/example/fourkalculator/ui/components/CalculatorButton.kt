@@ -16,9 +16,8 @@ fun CalculatorButton(
     label: String,
     backgroundColor: Color,
     onClick: () -> Unit,
-    textColor: Color
-   )
-{
+    textColor: Color,
+) {
     Button(
         onClick = onClick,
         modifier = Modifier.size(86.dp),
