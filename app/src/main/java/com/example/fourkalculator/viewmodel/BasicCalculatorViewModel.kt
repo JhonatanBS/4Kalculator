@@ -8,7 +8,7 @@ import com.example.fourkalculator.ui.utils.ButtonType
 
 class BasicCalculatorViewModel : ViewModel() {
 
-    private val _expression = MutableLiveData<String>()
+    private val _expression = MutableLiveData("")
     val expression: LiveData<String> = _expression
 
     private val _result = MutableLiveData("")
@@ -43,7 +43,9 @@ class BasicCalculatorViewModel : ViewModel() {
 
         when (type) {
             ButtonType.NUMBER -> {
-                _expression.value = currentExpression + value
+                val input = IsValidInputDisplay.resolveParenthesisInput(currentExpression, value)
+
+                _expression.value = currentExpression + input
             }
 
             ButtonType.OPERATOR -> {
@@ -60,6 +62,12 @@ class BasicCalculatorViewModel : ViewModel() {
                 // Logic of function
             }
 
+            ButtonType.GROUPING -> {
+                _expression.value += IsValidInputDisplay.resolveParenthesisInput(
+                    expression.value,
+                    value
+                )
+            }
         }
     }
 

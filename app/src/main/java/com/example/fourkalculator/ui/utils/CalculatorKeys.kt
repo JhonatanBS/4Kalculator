@@ -25,7 +25,7 @@ val keys = listOf(
     CalculatorKey("+", Primary, Secondary, ButtonType.OPERATOR),
 
     CalculatorKey("0", Secondary, Primary, ButtonType.NUMBER),
-    CalculatorKey(",", Secondary, Primary, ButtonType.NUMBER),
-    CalculatorKey("()", Secondary, Primary, ButtonType.NUMBER),
+    CalculatorKey(",", Secondary, Primary, ButtonType.GROUPING),
+    CalculatorKey("()", Secondary, Primary, ButtonType.GROUPING),
     CalculatorKey("=", Primary, Secondary, ButtonType.FUNCTION),
 )
