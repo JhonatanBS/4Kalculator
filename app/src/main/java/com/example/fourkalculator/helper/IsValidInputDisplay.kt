@@ -60,4 +60,25 @@ object IsValidInputDisplay {
         return value
     }
 
+    fun formatNumberWithSeparators(currentExpression: String): String {
+        var counterNumbers = 0
+        val formattedNumber = StringBuilder()
+
+        for (value in currentExpression.reversed()) {
+            if (value.isDigit()) {
+                if (counterNumbers != 0 && counterNumbers % 3 == 0) {
+                    formattedNumber.append(".")
+                }
+
+                formattedNumber.append(value)
+                counterNumbers++
+
+            } else {
+                counterNumbers = 0
+                formattedNumber.append(value)
+            }
+        }
+        return formattedNumber.reversed().toString()
+    }
+
 }

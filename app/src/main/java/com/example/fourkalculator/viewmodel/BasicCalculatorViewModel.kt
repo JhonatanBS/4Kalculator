@@ -43,9 +43,16 @@ class BasicCalculatorViewModel : ViewModel() {
 
         when (type) {
             ButtonType.NUMBER -> {
-                val input = IsValidInputDisplay.resolveParenthesisInput(currentExpression, value)
+                val expressionWithoutSeparators = currentExpression.replace(".", "")
 
-                _expression.value = currentExpression + input
+                val input =
+                    IsValidInputDisplay.resolveParenthesisInput(expressionWithoutSeparators, value)
+
+                val newExpression = expressionWithoutSeparators + input
+
+                val formattedNumber = IsValidInputDisplay.formatNumberWithSeparators(newExpression)
+
+                _expression.value = formattedNumber
             }
 
             ButtonType.OPERATOR -> {
