@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.fourkalculator.helper.IsValidInputDisplay
 import com.example.fourkalculator.ui.utils.ButtonType
+import org.mariuszgromada.math.mxparser.Expression
 
 class BasicCalculatorViewModel : ViewModel() {
 
@@ -18,14 +19,19 @@ class BasicCalculatorViewModel : ViewModel() {
         when (value) {
             "CE" -> clearDisplay()
             "C" -> clearLastInput()
-            "=" -> fullResult(value)
+            "=" -> fullResult()
             else -> addInputValue(value, type)
-
         }
     }
 
-    private fun fullResult(value: String) {
-        //_result.value = value.
+    private fun fullResult() {
+        if (expression.value.isNullOrEmpty()) expression.value
+
+        val resultExpression = Expression(_expression.value?.replace(".", "")).calculate()
+
+        _result.value =
+            if (resultExpression % 1.0 == 0.00) resultExpression.toLong().toString()
+            else resultExpression.toString()
     }
 
     private fun clearLastInput() {
