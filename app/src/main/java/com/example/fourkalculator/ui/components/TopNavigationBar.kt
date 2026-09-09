@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 import com.example.fourkalculator.R
 
 @Composable
-fun TopNavigationBar() {
+fun TopNavigationBar(onCalculatorClick: () -> Unit) {
     Row(
         modifier = Modifier
             .height(48.dp)
@@ -32,7 +32,9 @@ fun TopNavigationBar() {
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.End
         ) {
-            TopBarIcon(icon = R.drawable.ic_calculator, description = "Calculator") {}
+            TopBarIcon(icon = R.drawable.ic_calculator, description = "Calculator") {
+                onCalculatorClick()
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ fun TopBarIcon(icon: Int, description: String, onClick: () -> Unit) {
             contentDescription = description,
             tint = Secondary,
             modifier = Modifier
-                .size(24.dp)
+                .size(24.dp),
         )
     }
 }

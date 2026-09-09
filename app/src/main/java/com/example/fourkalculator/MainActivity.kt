@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import com.example.fourkalculator.navigation.AppNavigation
 import com.example.fourkalculator.ui.components.CalculatorDisplay
 import com.example.fourkalculator.ui.components.CalculatorKeyboard
 import com.example.fourkalculator.ui.components.ScreenContainer
@@ -25,19 +26,19 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             FourKalculatorTheme {
-                MainScreen(viewlModel)
+                AppNavigation(viewlModel)
             }
         }
     }
 }
 
 @Composable
-fun MainScreen(viewlModel: BasicCalculatorViewModel) {
+fun MainScreen(viewlModel: BasicCalculatorViewModel, onAdvancedClick: () -> Unit) {
     val expression by viewlModel.expression.observeAsState("")
     val result by viewlModel.result.observeAsState("")
 
     ScreenContainer {
-        TopNavigationBar()
+        TopNavigationBar(onAdvancedClick)
 
         CalculatorDisplay(expression = expression, result = result)
 
