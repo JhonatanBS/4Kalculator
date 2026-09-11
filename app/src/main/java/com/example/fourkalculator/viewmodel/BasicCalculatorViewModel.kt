@@ -12,7 +12,7 @@ class BasicCalculatorViewModel : ViewModel() {
     private val _expression = MutableLiveData("")
     val expression: LiveData<String> = _expression
 
-    private val _result = MutableLiveData("")
+    private val _result = MutableLiveData("0")
     val result: LiveData<String> = _result
 
     fun handleKeyInput(value: String, type: ButtonType) {
@@ -32,6 +32,8 @@ class BasicCalculatorViewModel : ViewModel() {
         _result.value =
             if (resultExpression % 1.0 == 0.00) resultExpression.toLong().toString()
             else resultExpression.toString()
+
+        _expression.value = ""
     }
 
     private fun clearLastInput() {
@@ -46,6 +48,8 @@ class BasicCalculatorViewModel : ViewModel() {
 
     fun addInputValue(value: String, type: ButtonType) {
         val currentExpression = _expression.value.orEmpty()
+
+        _result.value = "0"
 
         when (type) {
             ButtonType.NUMBER -> {
