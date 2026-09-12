@@ -5,8 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
+import com.example.fourkalculator.navigation.AppNavigation
 import com.example.fourkalculator.ui.components.ScreenContainer
+import com.example.fourkalculator.ui.components.TopNavigationBar
 import com.example.fourkalculator.ui.theme.FourKalculatorTheme
+import com.example.fourkalculator.viewmodel.AdvancedCalculatorViewModel
 
 class AdvancedCalculatorActivity : ComponentActivity() {
 
@@ -17,15 +20,15 @@ class AdvancedCalculatorActivity : ComponentActivity() {
 
         setContent {
             FourKalculatorTheme {
-                AdvancedCalculatorScreen()
+                AppNavigation()
             }
         }
     }
 }
 
 @Composable
-fun AdvancedCalculatorScreen() {
+fun AdvancedCalculatorScreen(viewModel: AdvancedCalculatorViewModel ,onBasicClick: () -> Unit) {
     ScreenContainer {
-        //TopNavigationBar()
+        TopNavigationBar(onBasicClick)
     }
 }
