@@ -31,12 +31,12 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(viewlModel: BasicCalculatorViewModel, onAdvancedClick: () -> Unit) {
+fun MainScreen(viewlModel: BasicCalculatorViewModel, currentRoute: String? ,onAdvancedClick: () -> Unit) {
     val expression by viewlModel.expression.observeAsState("")
     val result by viewlModel.result.observeAsState("")
 
     ScreenContainer {
-        TopNavigationBar(onAdvancedClick)
+        TopNavigationBar(onAdvancedClick, currentRoute)
 
         CalculatorDisplay(expression = expression, result = result)
 

@@ -27,8 +27,8 @@ class AdvancedCalculatorActivity : ComponentActivity() {
 }
 
 @Composable
-fun AdvancedCalculatorScreen(viewModel: AdvancedCalculatorViewModel ,onBasicClick: () -> Unit) {
+fun AdvancedCalculatorScreen(viewModel: AdvancedCalculatorViewModel, currentRoute: String?, onBasicClick: () -> Unit) {
     ScreenContainer {
-        TopNavigationBar(onBasicClick)
+        TopNavigationBar(onBasicClick, currentRoute)
     }
 }
