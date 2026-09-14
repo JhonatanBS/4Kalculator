@@ -8,11 +8,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.fourkalculator.ui.utils.ButtonContent
 import com.example.fourkalculator.ui.utils.ButtonType
 import com.example.fourkalculator.ui.utils.advancedKeys
 
 @Composable
-fun AdvancedCalculatorKeyboard(onKeyClick: (String, ButtonType) -> Unit) {
+fun AdvancedCalculatorKeyboard(onKeyClick: (ButtonContent, ButtonType) -> Unit) {
 
     Column(
         modifier = Modifier
@@ -27,7 +28,7 @@ fun AdvancedCalculatorKeyboard(onKeyClick: (String, ButtonType) -> Unit) {
             ) {
                 rowKeys.forEach { key ->
                     AdvancedCalculatorButton(
-                        label = key.label,
+                        content = key.label,
                         backgroundColor = key.background,
                         onClick = { onKeyClick(key.label, key.typeButton) },
                         textColor = key.textColor

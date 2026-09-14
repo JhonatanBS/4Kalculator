@@ -24,9 +24,9 @@ fun BasicCalculatorKeyboard(onKeyClick: (String, ButtonType) -> Unit) {
             ) {
                 rowKeys.forEach { key ->
                     BasicCalculatorButton(
-                        label = key.label,
+                        content = key.label,
                         backgroundColor = key.background,
-                        onClick = { onKeyClick(key.label, key.typeButton) },
+                        onClick = { onKeyClick(key.label.toString(), key.typeButton) },
                         textColor = key.textColor
                     )
                 }
