@@ -8,8 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import com.example.fourkalculator.navigation.AppNavigation
+import com.example.fourkalculator.ui.components.BasicCalculatorKeyboard
 import com.example.fourkalculator.ui.components.CalculatorDisplay
-import com.example.fourkalculator.ui.components.CalculatorKeyboard
 import com.example.fourkalculator.ui.components.ScreenContainer
 import com.example.fourkalculator.ui.components.TopNavigationBar
 import com.example.fourkalculator.ui.theme.FourKalculatorTheme
@@ -31,16 +31,16 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(viewlModel: BasicCalculatorViewModel, currentRoute: String? ,onAdvancedClick: () -> Unit) {
-    val expression by viewlModel.expression.observeAsState("")
-    val result by viewlModel.result.observeAsState("")
+fun MainScreen(viewModel: BasicCalculatorViewModel, currentRoute: String? ,onAdvancedClick: () -> Unit) {
+    val expression by viewModel.expression.observeAsState("")
+    val result by viewModel.result.observeAsState("")
 
     ScreenContainer {
         TopNavigationBar(onAdvancedClick, currentRoute)
 
         CalculatorDisplay(expression = expression, result = result)
 
-        CalculatorKeyboard(onKeyClick  = { value, type -> viewlModel.handleKeyInput(value, type)})
+        BasicCalculatorKeyboard(onKeyClick  = { value, type -> viewModel.handleKeyInput(value, type)})
     }
 }
 
