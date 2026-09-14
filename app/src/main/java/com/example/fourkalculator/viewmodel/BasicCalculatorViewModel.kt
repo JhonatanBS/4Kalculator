@@ -25,7 +25,7 @@ class BasicCalculatorViewModel : ViewModel() {
     }
 
     private fun fullResult() {
-        if (expression.value.isNullOrEmpty()) expression.value
+        if (expression.value.isNullOrEmpty()) _expression.value = "0"
 
         val resultExpression = Expression(_expression.value?.replace(".", "")).calculate()
 

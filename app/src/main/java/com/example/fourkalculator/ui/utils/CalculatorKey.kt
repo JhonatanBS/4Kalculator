@@ -11,5 +11,6 @@ data class CalculatorKey(
     val label: ButtonContent,
     val background: Color,
     val textColor: Color,
-    val typeButton: ButtonType
+    val typeButton: ButtonType,
+    val value: String
 )
