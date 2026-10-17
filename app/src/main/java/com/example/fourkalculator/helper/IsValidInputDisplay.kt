@@ -2,7 +2,7 @@ package com.example.fourkalculator.helper
 
 object IsValidInputDisplay {
     fun isLastCharacterOperator(value: String): Boolean {
-        return value.lastOrNull() in setOf('/', '+', '*', '-')
+        return value.lastOrNull() in setOf('/', '+', '*', '-', '%')
     }
 
     fun resolveParenthesisInput(currentExpression: String?, value: String): String {

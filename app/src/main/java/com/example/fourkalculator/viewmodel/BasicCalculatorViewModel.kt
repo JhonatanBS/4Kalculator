@@ -29,11 +29,15 @@ class BasicCalculatorViewModel : ViewModel() {
 
         val resultExpression = Expression(_expression.value?.replace(".", "")).calculate()
 
-        _result.value =
-            if (resultExpression % 1.0 == 0.00) resultExpression.toLong().toString()
-            else resultExpression.toString()
+        if (resultExpression.isFinite()) {
+            _result.value =
+                if (resultExpression % 1.0 == 0.00) resultExpression.toLong().toString()
+                else resultExpression.toString()
 
-        _expression.value = result.value
+            _expression.value = result.value
+        } else {
+            return
+        }
     }
 
     private fun clearLastInput() {
@@ -68,10 +72,12 @@ class BasicCalculatorViewModel : ViewModel() {
             ButtonType.OPERATOR -> {
                 val isLastOperator = IsValidInputDisplay.isLastCharacterOperator(currentExpression)
                 val isInvalidFirstOperator =
-                    currentExpression.isEmpty() && (value == "/" || value == "*")
+                    currentExpression.isEmpty() && (value == "/" || value == "*" || value == "%")
 
                 if (!isLastOperator && !isInvalidFirstOperator) {
                     _expression.value = currentExpression + value
+                } else {
+                    return
                 }
             }
 

@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     val nav_version = "2.9.8"
 
     implementation(platform(libs.androidx.compose.bom))
