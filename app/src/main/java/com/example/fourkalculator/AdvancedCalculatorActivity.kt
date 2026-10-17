@@ -31,15 +31,26 @@ class AdvancedCalculatorActivity : ComponentActivity() {
 }
 
 @Composable
-fun AdvancedCalculatorScreen(viewModel: AdvancedCalculatorViewModel, currentRoute: String?, onBasicClick: () -> Unit) {
+fun AdvancedCalculatorScreen(
+    viewModel: AdvancedCalculatorViewModel,
+    currentRoute: String?,
+    onBasicClick: () -> Unit
+) {
     val expression by viewModel.expression.observeAsState("")
     val result by viewModel.result.observeAsState("")
+    val toggleScientificFunctions by viewModel.toggleScientificFunctions.observeAsState(false)
+
 
     ScreenContainer {
         TopNavigationBar(onBasicClick, currentRoute)
 
         CalculatorDisplay(expression, result)
 
-        AdvancedCalculatorKeyboard( onKeyClick = { value, type -> viewModel.handleKeyInput(value, type)}  )
+        AdvancedCalculatorKeyboard(onKeyClick = { value, type ->
+            viewModel.handleKeyInput(
+                value,
+                type
+            )
+        }, toggleScientificFunctions)
     }
 }

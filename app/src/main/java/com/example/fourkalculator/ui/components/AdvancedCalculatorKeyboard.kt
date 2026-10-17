@@ -10,10 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.fourkalculator.ui.utils.ButtonContent
 import com.example.fourkalculator.ui.utils.ButtonType
-import com.example.fourkalculator.ui.utils.advancedKeys
+import com.example.fourkalculator.ui.utils.advancedKeysLeft
+import com.example.fourkalculator.ui.utils.advancedKeysRight
 
 @Composable
-fun AdvancedCalculatorKeyboard(onKeyClick: (ButtonContent, ButtonType) -> Unit) {
+fun AdvancedCalculatorKeyboard(onKeyClick: (String, ButtonType) -> Unit, isActived: Boolean = false) {
 
     Column(
         modifier = Modifier
@@ -21,20 +22,40 @@ fun AdvancedCalculatorKeyboard(onKeyClick: (ButtonContent, ButtonType) -> Unit) 
             .padding(10.dp, 0.dp),
         Arrangement.spacedBy(14.dp),
     ) {
-        advancedKeys.chunked(4).forEach { rowKeys ->
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                rowKeys.forEach { key ->
-                    AdvancedCalculatorButton(
-                        content = key.label,
-                        backgroundColor = key.background,
-                        onClick = { onKeyClick(key.label, key.typeButton) },
-                        textColor = key.textColor
-                    )
+
+        if(!isActived) {
+            advancedKeysLeft.chunked(4).forEach { rowKeys ->
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    rowKeys.forEach { key ->
+                        AdvancedCalculatorButton(
+                            content = key.label,
+                            backgroundColor = key.background,
+                            onClick = { onKeyClick(key.value, key.typeButton) },
+                            textColor = key.textColor
+                        )
+                    }
+                }
+            }
+        } else {
+            advancedKeysRight.chunked(4).forEach { rowKeys ->
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    rowKeys.forEach { key ->
+                        AdvancedCalculatorButton(
+                            content = key.label,
+                            backgroundColor = key.background,
+                            onClick = { onKeyClick(key.value, key.typeButton) },
+                            textColor = key.textColor
+                        )
+                    }
                 }
             }
         }
+
     }
 }
