@@ -33,14 +33,14 @@ class BasicCalculatorViewModel : ViewModel() {
             if (resultExpression % 1.0 == 0.00) resultExpression.toLong().toString()
             else resultExpression.toString()
 
-        _expression.value = ""
+        _expression.value = result.value
     }
 
     private fun clearLastInput() {
         val currentExpression = _expression.value ?: return
 
-        if (currentExpression.isEmpty()) {
-            return
+        if (currentExpression.isEmpty() || currentExpression.length == 1) {
+            _result.value = "0"
         }
 
         _expression.value = currentExpression.dropLast(1)
@@ -90,5 +90,6 @@ class BasicCalculatorViewModel : ViewModel() {
 
     fun clearDisplay() {
         _expression.value = ""
+        _result.value = "0"
     }
 }
