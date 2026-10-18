@@ -33,7 +33,7 @@ fun TopNavigationBar(onCalculatorClick: () -> Unit, currentRoute: String?) {
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.End
         ) {
-            if(currentRoute == "advanced") {
+            if (currentRoute == "advanced") {
                 TopBarIcon(icon = R.drawable.ic_basic_calculator, description = "Calculator") {
                     onCalculatorClick()
                 }
