@@ -23,9 +23,21 @@ fun TopNavigationBar(onCalculatorClick: () -> Unit, currentRoute: String?) {
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            TopBarIcon(icon = R.drawable.ic_clock, description = "History") {}
-            TopBarIcon(icon = R.drawable.ic_camera, description = "Camera") {}
-            TopBarIcon(icon = R.drawable.ic_measures, description = "Measures") {}
+            TopBarIcon(
+                icon = R.drawable.ic_clock,
+                description = "History",
+                currentRoute == "history"
+            ) {}
+            TopBarIcon(
+                icon = R.drawable.ic_camera,
+                description = "Camera",
+                currentRoute == "camera"
+            ) {}
+            TopBarIcon(
+                icon = R.drawable.ic_measures,
+                description = "Measures",
+                currentRoute == "measures"
+            ) {}
         }
         Row(
             modifier = Modifier
@@ -34,11 +46,19 @@ fun TopNavigationBar(onCalculatorClick: () -> Unit, currentRoute: String?) {
             horizontalArrangement = Arrangement.End
         ) {
             if (currentRoute == "advanced") {
-                TopBarIcon(icon = R.drawable.ic_basic_calculator, description = "Calculator") {
+                TopBarIcon(
+                    icon = R.drawable.ic_basic_calculator,
+                    description = "Calculator",
+                    true
+                ) {
                     onCalculatorClick()
                 }
             } else {
-                TopBarIcon(icon = R.drawable.ic_advanced_calculator, description = "Calculator") {
+                TopBarIcon(
+                    icon = R.drawable.ic_advanced_calculator,
+                    description = "Calculator",
+                    true
+                ) {
                     onCalculatorClick()
                 }
             }

@@ -7,10 +7,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.example.fourkalculator.ui.theme.Primary
 import com.example.fourkalculator.ui.theme.Secondary
 
 @Composable
-fun TopBarIcon(icon: Int, description: String, onClick: () -> Unit) {
+fun TopBarIcon(icon: Int, description: String, isSelected: Boolean = false, onClick: () -> Unit) {
     IconButton(
         onClick = onClick,
     )
@@ -18,9 +19,9 @@ fun TopBarIcon(icon: Int, description: String, onClick: () -> Unit) {
         Icon(
             painter = painterResource(icon),
             contentDescription = description,
-            tint = Secondary,
+            tint = if (isSelected) Primary else Secondary,
             modifier = Modifier
-                .size(24.dp),
+                .size(24.dp)
         )
     }
 }

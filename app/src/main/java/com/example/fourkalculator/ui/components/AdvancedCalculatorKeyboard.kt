@@ -8,13 +8,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.fourkalculator.ui.utils.ButtonContent
 import com.example.fourkalculator.ui.utils.ButtonType
 import com.example.fourkalculator.ui.utils.advancedKeysLeft
 import com.example.fourkalculator.ui.utils.advancedKeysRight
 
 @Composable
-fun AdvancedCalculatorKeyboard(onKeyClick: (String, ButtonType) -> Unit, isActived: Boolean = false) {
+fun AdvancedCalculatorKeyboard(
+    onKeyClick: (String, ButtonType) -> Unit,
+    isActivated: Boolean = false
+) {
 
     Column(
         modifier = Modifier
@@ -23,7 +25,7 @@ fun AdvancedCalculatorKeyboard(onKeyClick: (String, ButtonType) -> Unit, isActiv
         Arrangement.spacedBy(14.dp),
     ) {
 
-        if(!isActived) {
+        if (!isActivated) {
             advancedKeysLeft.chunked(4).forEach { rowKeys ->
                 Row(
                     modifier = Modifier.fillMaxWidth(),

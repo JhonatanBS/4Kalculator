@@ -27,7 +27,8 @@ fun AppNavigation() {
             MainScreen(
                 viewModelBasic,
                 currentRoute = currentRoute,
-                onAdvancedClick = { navController.navigate("advanced") })
+                onAdvancedClick = { navController.navigate("advanced") }
+            )
         }
         composable("advanced") {
             val viewModelAdvanced: AdvancedCalculatorViewModel = viewModel()
