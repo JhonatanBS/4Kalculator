@@ -31,16 +31,35 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(viewModel: BasicCalculatorViewModel, currentRoute: String? ,onAdvancedClick: () -> Unit) {
+fun MainScreen(
+    viewModel: BasicCalculatorViewModel, currentRoute: String?,
+    onHistoryClick: () -> Unit,
+    onCameraClick: () -> Unit,
+    onMeasuresClick: () -> Unit,
+    onBasicClick: () -> Unit,
+    onAdvancedClick: () -> Unit,
+) {
     val expression by viewModel.expression.observeAsState("")
     val result by viewModel.result.observeAsState("")
 
     ScreenContainer {
-        TopNavigationBar(onAdvancedClick, currentRoute)
+        TopNavigationBar(
+            onHistoryClick,
+            onCameraClick,
+            onMeasuresClick,
+            onBasicClick,
+            onAdvancedClick,
+            currentRoute
+        )
 
         CalculatorDisplay(expression = expression, result = result)
 
-        BasicCalculatorKeyboard(onKeyClick  = { value, type -> viewModel.handleKeyInput(value, type)})
+        BasicCalculatorKeyboard(onKeyClick = { value, type ->
+            viewModel.handleKeyInput(
+                value,
+                type
+            )
+        })
     }
 }
 

@@ -8,9 +8,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.fourkalculator.AdvancedCalculatorScreen
+import com.example.fourkalculator.HistoryCalculatorScreen
 import com.example.fourkalculator.MainScreen
 import com.example.fourkalculator.viewmodel.AdvancedCalculatorViewModel
 import com.example.fourkalculator.viewmodel.BasicCalculatorViewModel
+import com.example.fourkalculator.viewmodel.HistoryCalculatorViewModel
 
 @Composable
 fun AppNavigation() {
@@ -27,7 +29,11 @@ fun AppNavigation() {
             MainScreen(
                 viewModelBasic,
                 currentRoute = currentRoute,
-                onAdvancedClick = { navController.navigate("advanced") }
+                onBasicClick = { navController.navigate("advanced") },
+                onHistoryClick = { navController.navigate("history") },
+                onCameraClick = {},
+                onMeasuresClick = {},
+                onAdvancedClick = {}
             )
         }
         composable("advanced") {
@@ -36,7 +42,26 @@ fun AppNavigation() {
             AdvancedCalculatorScreen(
                 viewModelAdvanced,
                 currentRoute = currentRoute,
-                onBasicClick = { navController.popBackStack() })
+                onBasicClick = {},
+                onHistoryClick = { navController.navigate("history") },
+                onCameraClick = {},
+                onMeasuresClick = {},
+                onAdvancedClick = { navController.navigate("basic") }
+            )
+        }
+
+        composable("history") {
+            val viewModelHistory: HistoryCalculatorViewModel = viewModel()
+
+            HistoryCalculatorScreen(
+                viewModelHistory,
+                currentRoute = currentRoute,
+                onBasicClick = { navController.navigate("basic") },
+                onHistoryClick = {},
+                onCameraClick = {},
+                onMeasuresClick = {},
+                onAdvancedClick = { navController.navigate("advanced") }
+            )
         }
     }
 }

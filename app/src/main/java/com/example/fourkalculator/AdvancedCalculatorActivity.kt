@@ -34,7 +34,11 @@ class AdvancedCalculatorActivity : ComponentActivity() {
 fun AdvancedCalculatorScreen(
     viewModel: AdvancedCalculatorViewModel,
     currentRoute: String?,
-    onBasicClick: () -> Unit
+    onHistoryClick: () -> Unit,
+    onCameraClick: () -> Unit,
+    onMeasuresClick: () -> Unit,
+    onBasicClick: () -> Unit,
+    onAdvancedClick: () -> Unit,
 ) {
     val expression by viewModel.expression.observeAsState("")
     val result by viewModel.result.observeAsState("")
@@ -42,7 +46,14 @@ fun AdvancedCalculatorScreen(
 
 
     ScreenContainer {
-        TopNavigationBar(onBasicClick, currentRoute)
+        TopNavigationBar(
+            onHistoryClick,
+            onCameraClick,
+            onMeasuresClick,
+            onBasicClick,
+            onAdvancedClick,
+            currentRoute
+        )
 
         CalculatorDisplay(expression, result)
 

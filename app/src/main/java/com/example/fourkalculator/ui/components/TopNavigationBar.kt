@@ -10,7 +10,14 @@ import androidx.compose.ui.unit.dp
 import com.example.fourkalculator.R
 
 @Composable
-fun TopNavigationBar(onCalculatorClick: () -> Unit, currentRoute: String?) {
+fun TopNavigationBar(
+    onHistoryClick: () -> Unit,
+    onCameraClick: () -> Unit,
+    onMeasuresCLick: () -> Unit,
+    onBasicClick: () -> Unit,
+    onAdvancedClick: () -> Unit,
+    currentRoute: String?
+) {
 
     Row(
         modifier = Modifier
@@ -27,17 +34,17 @@ fun TopNavigationBar(onCalculatorClick: () -> Unit, currentRoute: String?) {
                 icon = R.drawable.ic_clock,
                 description = "History",
                 currentRoute == "history"
-            ) {}
+            ) { onHistoryClick() }
             TopBarIcon(
                 icon = R.drawable.ic_camera,
                 description = "Camera",
                 currentRoute == "camera"
-            ) {}
+            ) { onCameraClick }
             TopBarIcon(
                 icon = R.drawable.ic_measures,
                 description = "Measures",
                 currentRoute == "measures"
-            ) {}
+            ) { onMeasuresCLick }
         }
         Row(
             modifier = Modifier
@@ -51,15 +58,15 @@ fun TopNavigationBar(onCalculatorClick: () -> Unit, currentRoute: String?) {
                     description = "Calculator",
                     true
                 ) {
-                    onCalculatorClick()
+                    onAdvancedClick()
                 }
             } else {
                 TopBarIcon(
                     icon = R.drawable.ic_advanced_calculator,
                     description = "Calculator",
-                    true
+                    currentRoute == "basic"
                 ) {
-                    onCalculatorClick()
+                    onBasicClick()
                 }
             }
 
