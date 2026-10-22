@@ -2,6 +2,8 @@ package com.example.fourkalculator.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,12 +12,24 @@ import androidx.navigation.compose.rememberNavController
 import com.example.fourkalculator.AdvancedCalculatorScreen
 import com.example.fourkalculator.HistoryCalculatorScreen
 import com.example.fourkalculator.MainScreen
+import com.example.fourkalculator.data.repository.HistoryRepository
 import com.example.fourkalculator.viewmodel.AdvancedCalculatorViewModel
 import com.example.fourkalculator.viewmodel.BasicCalculatorViewModel
+import com.example.fourkalculator.viewmodel.CalculatorViewModelFactory
 import com.example.fourkalculator.viewmodel.HistoryCalculatorViewModel
 
 @Composable
 fun AppNavigation() {
+
+    val context = LocalContext.current.applicationContext
+
+    val historyRepository = remember(context) {
+        HistoryRepository(context)
+    }
+
+    val viewModelFactory = remember(historyRepository) {
+        CalculatorViewModelFactory(historyRepository)
+    }
 
     val navController = rememberNavController()
 
@@ -24,7 +38,7 @@ fun AppNavigation() {
 
     NavHost(navController = navController, startDestination = "basic") {
         composable("basic") {
-            val viewModelBasic: BasicCalculatorViewModel = viewModel()
+            val viewModelBasic: BasicCalculatorViewModel = viewModel(factory = viewModelFactory)
 
             MainScreen(
                 viewModelBasic,
@@ -37,7 +51,8 @@ fun AppNavigation() {
             )
         }
         composable("advanced") {
-            val viewModelAdvanced: AdvancedCalculatorViewModel = viewModel()
+            val viewModelAdvanced: AdvancedCalculatorViewModel =
+                viewModel(factory = viewModelFactory)
 
             AdvancedCalculatorScreen(
                 viewModelAdvanced,
@@ -51,7 +66,7 @@ fun AppNavigation() {
         }
 
         composable("history") {
-            val viewModelHistory: HistoryCalculatorViewModel = viewModel()
+            val viewModelHistory: HistoryCalculatorViewModel = viewModel(factory = viewModelFactory)
 
             HistoryCalculatorScreen(
                 viewModelHistory,

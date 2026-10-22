@@ -3,11 +3,12 @@ package com.example.fourkalculator.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.fourkalculator.data.repository.HistoryRepository
 import com.example.fourkalculator.helper.IsValidInputDisplay
 import com.example.fourkalculator.ui.utils.ButtonType
 import org.mariuszgromada.math.mxparser.Expression
 
-class AdvancedCalculatorViewModel : ViewModel() {
+class AdvancedCalculatorViewModel(private val repository: HistoryRepository) : ViewModel() {
 
     private val _expression = MutableLiveData("")
     val expression: LiveData<String> = _expression
