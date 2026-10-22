@@ -9,9 +9,9 @@ import androidx.compose.ui.unit.dp
 import com.example.fourkalculator.ui.utils.CalculationHistory
 
 @Composable
-fun CalculationHistoryList(history: List<CalculationHistory>) {
+fun CalculationHistoryList(history: List<CalculationHistory>, modifier: Modifier = Modifier) {
     LazyColumn(
-        modifier = Modifier.padding(top = 50.dp),
+        modifier = modifier.padding(top = 50.dp),
     ) {
         items(
             items = history,
