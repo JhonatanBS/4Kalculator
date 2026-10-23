@@ -27,6 +27,7 @@ class HistoryCalculatorViewModel(private val repository: HistoryRepository) : Vi
     fun clearHistory() {
         viewModelScope.launch {
             repository.clearAllHistory()
+            _history.value = emptyList()
         }
     }
 }

@@ -52,6 +52,7 @@ fun HistoryCalculatorScreen(
     onMeasuresClick: () -> Unit,
     onBasicClick: () -> Unit,
     onAdvancedClick: () -> Unit,
+    onClearHistoryClick: () -> Unit
 ) {
     val history by viewModel.history.collectAsState()
 
@@ -71,7 +72,7 @@ fun HistoryCalculatorScreen(
         )
 
         Button(
-            onClick = onHistoryClick,
+            onClick = onClearHistoryClick,
             modifier = Modifier
                 .height(50.dp)
                 .width(219.dp)

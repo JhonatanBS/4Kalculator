@@ -75,7 +75,8 @@ fun AppNavigation() {
                 onHistoryClick = {},
                 onCameraClick = {},
                 onMeasuresClick = {},
-                onAdvancedClick = { navController.navigate("advanced") }
+                onAdvancedClick = { navController.navigate("advanced") },
+                onClearHistoryClick = { viewModelHistory.clearHistory() }
             )
         }
     }
