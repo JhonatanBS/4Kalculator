@@ -1,6 +1,7 @@
 package com.example.fourkalculator.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
@@ -31,6 +32,10 @@ fun AppNavigation() {
         CalculatorViewModelFactory(historyRepository)
     }
 
+    val historyViewModel: HistoryCalculatorViewModel = viewModel(factory = viewModelFactory)
+    val history by historyViewModel.history.collectAsState()
+    val hasHistory = history.isNotEmpty()
+
     val navController = rememberNavController()
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -43,6 +48,7 @@ fun AppNavigation() {
             MainScreen(
                 viewModelBasic,
                 currentRoute = currentRoute,
+                hasHistory,
                 onBasicClick = { navController.navigate("advanced") },
                 onHistoryClick = { navController.navigate("history") },
                 onCameraClick = {},
@@ -57,6 +63,7 @@ fun AppNavigation() {
             AdvancedCalculatorScreen(
                 viewModelAdvanced,
                 currentRoute = currentRoute,
+                hasHistory,
                 onBasicClick = {},
                 onHistoryClick = { navController.navigate("history") },
                 onCameraClick = {},
@@ -71,6 +78,7 @@ fun AppNavigation() {
             HistoryCalculatorScreen(
                 viewModelHistory,
                 currentRoute = currentRoute,
+                hasHistory,
                 onBasicClick = { navController.navigate("basic") },
                 onHistoryClick = {},
                 onCameraClick = {},

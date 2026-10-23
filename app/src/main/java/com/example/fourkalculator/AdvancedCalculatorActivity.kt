@@ -33,7 +33,7 @@ class AdvancedCalculatorActivity : ComponentActivity() {
 @Composable
 fun AdvancedCalculatorScreen(
     viewModel: AdvancedCalculatorViewModel,
-    currentRoute: String?,
+    currentRoute: String?, hasHistory: Boolean,
     onHistoryClick: () -> Unit,
     onCameraClick: () -> Unit,
     onMeasuresClick: () -> Unit,
@@ -52,7 +52,8 @@ fun AdvancedCalculatorScreen(
             onMeasuresClick,
             onBasicClick,
             onAdvancedClick,
-            currentRoute
+            currentRoute,
+            hasHistory,
         )
 
         CalculatorDisplay(expression, result)

@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen(
-    viewModel: BasicCalculatorViewModel, currentRoute: String?,
+    viewModel: BasicCalculatorViewModel, currentRoute: String?, hasHistory: Boolean,
     onHistoryClick: () -> Unit,
     onCameraClick: () -> Unit,
     onMeasuresClick: () -> Unit,
@@ -49,7 +49,8 @@ fun MainScreen(
             onMeasuresClick,
             onBasicClick,
             onAdvancedClick,
-            currentRoute
+            currentRoute,
+            hasHistory
         )
 
         CalculatorDisplay(expression = expression, result = result)

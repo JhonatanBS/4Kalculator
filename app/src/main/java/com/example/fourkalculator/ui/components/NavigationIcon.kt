@@ -11,15 +11,26 @@ import com.example.fourkalculator.ui.theme.Primary
 import com.example.fourkalculator.ui.theme.Secondary
 
 @Composable
-fun TopBarIcon(icon: Int, description: String, isSelected: Boolean = false, onClick: () -> Unit) {
+fun TopBarIcon(
+    icon: Int,
+    description: String,
+    isSelected: Boolean = false,
+    enabled: Boolean = true,
+    onClick: () -> Unit
+) {
     IconButton(
         onClick = onClick,
+        enabled = enabled
     )
     {
         Icon(
             painter = painterResource(icon),
             contentDescription = description,
-            tint = if (isSelected) Primary else Secondary,
+            tint = when {
+                !enabled -> Secondary.copy(alpha = 0.38f)
+                isSelected -> Primary
+                else -> Secondary
+            },
             modifier = Modifier
                 .size(24.dp)
         )

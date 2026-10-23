@@ -16,7 +16,8 @@ fun TopNavigationBar(
     onMeasuresCLick: () -> Unit,
     onBasicClick: () -> Unit,
     onAdvancedClick: () -> Unit,
-    currentRoute: String?
+    currentRoute: String?,
+    hasHistory: Boolean
 ) {
 
     Row(
@@ -33,7 +34,8 @@ fun TopNavigationBar(
             TopBarIcon(
                 icon = R.drawable.ic_clock,
                 description = "History",
-                currentRoute == "history"
+                currentRoute == "history",
+                hasHistory,
             ) { onHistoryClick() }
             TopBarIcon(
                 icon = R.drawable.ic_camera,

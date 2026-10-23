@@ -46,7 +46,7 @@ class HistoryCalculatorActivity : ComponentActivity() {
 @Composable
 fun HistoryCalculatorScreen(
     viewModel: HistoryCalculatorViewModel,
-    currentRoute: String?,
+    currentRoute: String?, hasHistory: Boolean,
     onHistoryClick: () -> Unit,
     onCameraClick: () -> Unit,
     onMeasuresClick: () -> Unit,
@@ -63,7 +63,8 @@ fun HistoryCalculatorScreen(
             onMeasuresClick,
             onBasicClick,
             onAdvancedClick,
-            currentRoute
+            currentRoute,
+            hasHistory,
         )
         CalculationHistoryList(
             history, modifier = Modifier
