@@ -28,26 +28,30 @@ class BasicCalculatorViewModel(private val repository: HistoryRepository) : View
     }
 
     private fun fullResult() {
-        if (expression.value.isNullOrEmpty()) _expression.value = "0"
+        val originalExpression = _expression.value.orEmpty()
 
-        val resultExpression = Expression(_expression.value?.replace(".", "")).calculate()
-
-        if (resultExpression.isFinite()) {
-            _result.value =
-                if (resultExpression % 1.0 == 0.00) resultExpression.toLong().toString()
-                else resultExpression.toString()
-
-            _expression.value = result.value
-
-            viewModelScope.launch {
-                repository.insertCalculation(
-                    expression = expression.value.toString(),
-                    result = result.value.toString()
-                )
-            }
-        } else {
+        if (originalExpression.isEmpty()) {
+            _expression.value = "0"
             return
         }
+
+        val resultExpression = Expression(originalExpression.replace(",", "")).calculate()
+
+        if (!resultExpression.isFinite()) return
+
+        val formattedResult =
+            if (resultExpression % 1.0 == 0.00) resultExpression.toLong().toString()
+            else resultExpression.toString()
+
+        viewModelScope.launch {
+            repository.insertCalculation(
+                expression = originalExpression,
+                result = formattedResult
+            )
+        }
+
+        _expression.value = formattedResult
+        _result.value = formattedResult
     }
 
     private fun clearLastInput() {
