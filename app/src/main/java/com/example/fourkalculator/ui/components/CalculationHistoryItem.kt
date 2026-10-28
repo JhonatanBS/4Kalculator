@@ -3,6 +3,7 @@ package com.example.fourkalculator.ui.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -19,7 +20,8 @@ fun CalculationHistoryItem(item: CalculationHistory) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .wrapContentHeight(),
+            .wrapContentHeight()
+            .padding(horizontal = 24.dp),
         horizontalAlignment = androidx.compose.ui.Alignment.End,
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
