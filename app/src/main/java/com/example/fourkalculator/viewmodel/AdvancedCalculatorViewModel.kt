@@ -3,9 +3,11 @@ package com.example.fourkalculator.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.fourkalculator.data.repository.HistoryRepository
 import com.example.fourkalculator.helper.IsValidInputDisplay
 import com.example.fourkalculator.ui.utils.ButtonType
+import kotlinx.coroutines.launch
 import org.mariuszgromada.math.mxparser.Expression
 
 class AdvancedCalculatorViewModel(private val repository: HistoryRepository) : ViewModel() {
@@ -32,26 +34,36 @@ class AdvancedCalculatorViewModel(private val repository: HistoryRepository) : V
     }
 
     private fun fullResult() {
-        if (expression.value.isNullOrEmpty()) _expression.value = "0"
+        val originExpression = _expression.value.orEmpty()
 
-        val resultExpression = Expression(_expression.value?.replace(".", "")).calculate()
-
-        if (resultExpression.isFinite()) {
-            _result.value =
-                if (resultExpression % 1.0 == 0.00) resultExpression.toLong().toString()
-                else resultExpression.toString()
-
-            _expression.value = result.value
-        } else {
+        if (originExpression.isEmpty()) {
+            _expression.value = "0"
             return
         }
+
+        val resultExpression = Expression(originExpression.replace(",", "")).calculate()
+
+        if (!resultExpression.isFinite()) return
+
+        val formattedResult =
+            if (resultExpression % 1.0 == 0.00) resultExpression.toLong().toString()
+            else resultExpression.toString()
+
+        viewModelScope.launch {
+            repository.insertCalculation(
+                expression = originExpression,
+                result = formattedResult
+            )
+        }
+        _expression.value = formattedResult
+        _result.value = formattedResult
     }
 
     private fun clearLastInput() {
         val currentExpression = _expression.value ?: return
 
-        if (currentExpression.isEmpty()) {
-            return
+        if (currentExpression.isEmpty() || currentExpression.length == 1) {
+            _result.value = "0"
         }
 
         _expression.value = currentExpression.dropLast(1)
