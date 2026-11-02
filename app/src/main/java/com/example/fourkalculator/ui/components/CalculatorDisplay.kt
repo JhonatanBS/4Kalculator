@@ -49,7 +49,7 @@ fun CalculatorDisplay(
             )
             Text(
                 text = result,
-                style = MaterialTheme.typography.displayLarge,
+                style = if (result.length > 10) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.displayLarge,
                 color = Primary,
             )
         }
