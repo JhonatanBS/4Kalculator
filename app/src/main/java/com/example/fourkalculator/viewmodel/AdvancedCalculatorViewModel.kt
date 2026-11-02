@@ -101,7 +101,32 @@ class AdvancedCalculatorViewModel(private val repository: HistoryRepository) : V
             }
 
             ButtonType.FUNCTION -> {
-                // Logic of function
+                val expressionWithoutSeparators = currentExpression.replace(".", "")
+
+                val formattedInput = when (value) {
+                    "sin", "cos", "tan", "sinh", "cosh", "tanh", "asinh", "acosh", "atanh",
+                    "asin", "acos", "atan", "abs", "lg", "ln", "sqrt", "∛", "exp", "rad",
+                        -> "$value("
+
+                    "x²" -> if (currentExpression.isNotEmpty()) "^2" else ""
+                    "xʸ" -> if (currentExpression.isNotEmpty()) "^" else ""
+                    "x³" -> if (currentExpression.isNotEmpty()) "^3" else ""
+                    "!" -> if (currentExpression.isNotEmpty()) "!" else ""
+                    "+/-" -> if (currentExpression.isNotEmpty()) "(-1)" else ""
+                    else -> value
+                }
+
+                val input =
+                    IsValidInputDisplay.resolveParenthesisInput(
+                        expressionWithoutSeparators,
+                        formattedInput
+                    )
+
+                val newExpression = expressionWithoutSeparators + input
+
+                val formattedNumber = IsValidInputDisplay.formatNumberWithSeparators(newExpression)
+
+                _expression.value = formattedNumber
             }
 
             ButtonType.GROUPING -> {

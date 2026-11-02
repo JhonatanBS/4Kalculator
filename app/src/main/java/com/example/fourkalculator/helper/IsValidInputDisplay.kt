@@ -80,5 +80,4 @@ object IsValidInputDisplay {
         }
         return formattedNumber.reversed().toString()
     }
-
 }
